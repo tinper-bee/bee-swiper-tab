@@ -18,6 +18,7 @@ const propType = {
   singleDom: PropTypes.node.isRequired,
   selectedItem: PropTypes.func,
   columnItemNum: PropTypes.number,
+  showOper: PropTypes.bool
 }
 
 class SwiperTab extends Component{
@@ -145,16 +146,18 @@ renderColumn = (data,column,totalColum) => {
       </div>
     )
   })
-  
-  let  operDom = (<div className="col-items">
-                    <div className="honor-oper">
-                        <div className="add-honor" onClick={this.addItem}>+</div>
-                        <div className="delete-honor" onClick={this.deleteItem}>-</div>
-                    </div>
-                  </div>)
-  if(Number(column) == totalColum-1) {
+  if(this.props.showOper) {
+    let  operDom = (<div className="col-items">
+        <div className="honor-oper">
+            <div className="add-honor" onClick={this.addItem}>+</div>
+            <div className="delete-honor" onClick={this.deleteItem}>-</div>
+        </div>
+      </div>)
+    if(Number(column) == totalColum-1) {
       columsArray.push(operDom)
+    }
   }
+  
   return <div className="columns">{columsArray}</div>;
 }
 
@@ -203,7 +206,8 @@ toggleHonorTab = (id) => {
 
 SwiperTab.defaultProps = {
   multiCheck: false,
-  columnItemNum: 4
+  columnItemNum: 4,
+  showOper: false
 }
 
 SwiperTab.propType = propType

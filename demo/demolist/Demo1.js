@@ -206,7 +206,7 @@ export default class Demo1 extends Component{
   	if(!this.state.swiperArray.length) return <span></span>
     return (
     	<div id="app">
-        	<SwiperTab columnItemNum={8} title={["群组1","群组2","群组3"]} onSelectItem={this.onSelectItem} swiperArray={this.state.swiperArray} singleDom={this.state.singleDom} itemNum={8} swiperKey={"cultureHonourTags"} addItem={this.handlerAdd} deleteItem={this.handleDelete} tabList={this.state.checkedHonorList} onSelectedItem={this.onSelectedItem}>
+        	<SwiperTab showOper={false} columnItemNum={8} title={["群组1","群组2","群组3"]} onSelectItem={this.onSelectItem} swiperArray={this.state.swiperArray} singleDom={this.state.singleDom} itemNum={8} swiperKey={"cultureHonourTags"} addItem={this.handlerAdd} deleteItem={this.handleDelete} tabList={this.state.checkedHonorList} onSelectedItem={this.onSelectedItem}>
             </SwiperTab>
       	</div>
       );
