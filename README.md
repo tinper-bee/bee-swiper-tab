@@ -9,22 +9,127 @@
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/tinper-bee/bee-swiper-tab.svg)](http://isitmaintained.com/project/tinper-bee/bee-swiper-tab "Percentage of issues still open")
 
 
-react bee-swiper-tab component for tinper-bee
+为多个数据小屏幕中展示量身定做，tab与swiper的结合，多用于表情的展示或者小item的展示。
 
-some description...
 
-## 使用方法
 
+## 使用
+
+### 使用单独的bee-swiper-tab包
+#### 组件引入
+先进行下载bee-swiper-tab包
+```
+npm install --save bee-swiper-tab
+```
+组件调用
 ```js
-
+import Button from 'bee-swiper-tab';
+ render(<SwiperTab />,document.getElementById("#app))   
+```
+#### 样式引入
+- 可以使用link引入build目录下SwiperTab.css
+```
+<link rel="stylesheet" href="./node_modules/bee-swiper-tab/build/SwiperTab.css">
+```
+- 可以在js中import样式
+```js
+import "./node_modules/bee-swiper-tab/src/SwiperTab.scss"
+//或是
+import "./node_modules/bee-swiper-tab/build/SwiperTab.css"
 ```
 
 
+```
+swiperArray
+
+let swiperArray = [
+        [
+          {
+              "id":1,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
+              "name":"拼命三郎"
+          },
+          {
+              "id":2,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
+              "name":"行家里手"
+          },
+          {
+              "id":3,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/3.png",
+              "name":"勇于担当"
+          }
+        ],
+        [
+          {
+              "id":1,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
+              "name":"拼命三郎"
+          },
+          {
+              "id":2,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
+              "name":"行家里手"
+          }
+        ],
+        [
+          {
+              "id":1,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
+              "name":"拼命三郎"
+          },
+          {
+              "id":2,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
+              "name":"行家里手"
+          }
+        ]
+      
+      ]
+
+title数据有几组，swiperArray就该有几组
+每个item数据最多显示img和文字，分别对应logo和name字段。如果不想显示某个不添加此字段即可。
+
+{
+    "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
+    "name":"行家里手"
+}
+
+    
+```
 
 ## API
 
+
 |参数|说明|类型|默认值|
 |:--|:---:|:--:|---:|
+|title|tab标签|array|["群组1","群组2","群组3"]|
+|swiperArray|滑动数据|array||
+|activeIndex|tab页签activeIndex|number|0|
+|columnItemNum|定义没列swiper的数据放几个item|number|4|
+|onSelectItem|点击选中某个item的回调,返回三个参数(param1:当前tab页签swiper的activeIndex,param2:当前swiper的activeIndex,param3:当前列下第几个)|func|-|
+|addItem|点击添加按钮的回调param1:当前tab页签的activeIndex|func|-|
+|deleteItem|点击删除按钮的回调param1:当前tab页签的activeIndex|func|-|
+|onChangeTab|切换tab页回调param:切换后的activeIndex|func|-|
+
+
+
+
+
 
 #### 开发调试
 

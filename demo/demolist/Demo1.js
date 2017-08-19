@@ -6,7 +6,7 @@
 */
 
 
-export default class Demo1 extends Component{
+class Demo1 extends Component{
   constructor(props){
     super(props);
     this.state = {
@@ -201,13 +201,25 @@ export default class Demo1 extends Component{
     this.state.swiperArray[index].push(tempAddItem);
 
   }
+
+  handleChangeTab = (activeIndex) => {
+      console.log(activeIndex);
+  }
   
   render(){
   	if(!this.state.swiperArray.length) return <span></span>
     return (
     	<div id="app">
-        	<SwiperTab showOper={false} columnItemNum={8} title={["群组1","群组2","群组3"]} onSelectItem={this.onSelectItem} swiperArray={this.state.swiperArray} singleDom={this.state.singleDom} itemNum={8} swiperKey={"cultureHonourTags"} addItem={this.handlerAdd} deleteItem={this.handleDelete} tabList={this.state.checkedHonorList} onSelectedItem={this.onSelectedItem}>
-            </SwiperTab>
+        	<SwiperTab 
+            showOper={true} 
+            activeIndex={2}
+            onChangeTab={this.handleChangeTab}
+            columnItemNum={8} 
+            title={["群组1","群组2","群组3"]} 
+            onSelectItem={this.onSelectItem} 
+            swiperArray={this.state.swiperArray} 
+            addItem={this.handlerAdd} 
+            deleteItem={this.handleDelete}  />
       	</div>
       );
   }
