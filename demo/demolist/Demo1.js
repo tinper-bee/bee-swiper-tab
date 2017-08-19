@@ -12,197 +12,185 @@ export default class Demo1 extends Component{
     this.state = {
       checkedHonorList: [],
       currentIndex1: 0,
+      swiperArray: []
     }
   };
-
+ 
   componentDidMount(){
     
-    let res = [
+    let swiperArray = [
+        [
           {
-              "titleId":1,
-              "titleName":"群组1",
-              "item":[
-                  {
-                      "id":1,
-                      "award":2,
-                      "value":1,
-                      "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-                      "name":"拼命三郎"
-                  },
-                  {
-                      "id":2,
-                      "award":2,
-                      "value":1,
-                      "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-                      "name":"行家里手"
-                  },
-                  {
-                      "id":3,
-                      "award":2,
-                      "value":1,
-                      "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/3.png",
-                      "name":"勇于担当"
-                  },{
-                      "id":1,
-                      "award":2,
-                      "value":1,
-                      "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-                      "name":"拼命三郎"
-                  },
-                  {
-                      "id":2,
-                      "award":2,
-                      "value":1,
-                      "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-                      "name":"行家里手"
-                  },
-                  {
-                      "id":3,
-                      "award":2,
-                      "value":1,
-                      "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/3.png",
-                      "name":"勇于担当"
-                  },{
-                      "id":1,
-                      "award":2,
-                      "value":1,
-                      "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-                      "name":"拼命三郎"
-                  },
-                  {
-                      "id":2,
-                      "award":2,
-                      "value":1,
-                      "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-                      "name":"行家里手"
-                  },
-                  {
-                      "id":3,
-                      "award":2,
-                      "value":1,
-                      "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/3.png",
-                      "name":"勇于担当"
-                  },{
-                      "id":1,
-                      "award":2,
-                      "value":1,
-                      "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-                      "name":"拼命三郎"
-                  },
-                  {
-                      "id":2,
-                      "award":2,
-                      "value":1,
-                      "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-                      "name":"行家里手"
-                  },
-                  {
-                      "id":3,
-                      "award":2,
-                      "value":1,
-                      "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/3.png",
-                      "name":"勇于担当"
-                  },{
-                      "id":1,
-                      "award":2,
-                      "value":1,
-                      "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-                      "name":"拼命三郎"
-                  },
-                  {
-                      "id":2,
-                      "award":2,
-                      "value":1,
-                      "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-                      "name":"行家里手"
-                  },
-                  {
-                      "id":3,
-                      "award":2,
-                      "value":1,
-                      "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/3.png",
-                      "name":"勇于担当"
-                  }
-              ]
+              "id":1,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
+              "name":"拼命三郎"
+          },
+          {
+              "id":2,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
+              "name":"行家里手"
+          },
+          {
+              "id":3,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/3.png",
+              "name":"勇于担当"
           },{
-              "titleId":2,
-              "titleName":"群组2",
-              "item":[
-                  {
-                      "id":1,
-                      "award":2,
-                      "value":1,
-                      "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-                      "name":"拼命三郎"
-                  },
-                  {
-                      "id":2,
-                      "award":2,
-                      "value":1,
-                      "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-                      "name":"行家里手"
-                  }
-              ]
+              "id":1,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
+              "name":"拼命三郎"
+          },
+          {
+              "id":2,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
+              "name":"行家里手"
+          },
+          {
+              "id":3,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/3.png",
+              "name":"勇于担当"
           },{
-            "titleId":3,
-            "titleName":"群组3",
-            "item":[
-                {
-                    "id":1,
-                    "award":2,
-                    "value":1,
-                    "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-                    "name":"拼命三郎"
-                },
-                {
-                    "id":2,
-                    "award":2,
-                    "value":1,
-                    "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-                    "name":"行家里手"
-                }
-            ]
+              "id":1,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
+              "name":"拼命三郎"
+          },
+          {
+              "id":2,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
+              "name":"行家里手"
+          },
+          {
+              "id":3,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/3.png",
+              "name":"勇于担当"
+          },{
+              "id":1,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
+              "name":"拼命三郎"
+          },
+          {
+              "id":2,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
+              "name":"行家里手"
+          },
+          {
+              "id":3,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/3.png",
+              "name":"勇于担当"
+          },{
+              "id":1,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
+              "name":"拼命三郎"
+          },
+          {
+              "id":2,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
+              "name":"行家里手"
+          },
+          {
+              "id":3,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/3.png",
+              "name":"勇于担当"
           }
+        ],
+        [
+          {
+              "id":1,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
+              "name":"拼命三郎"
+          },
+          {
+              "id":2,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
+              "name":"行家里手"
+          }
+        ],
+        [
+          {
+              "id":1,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
+              "name":"拼命三郎"
+          },
+          {
+              "id":2,
+              "award":2,
+              "value":1,
+              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
+              "name":"行家里手"
+          }
+        ]
+      
       ]
-    this.setState({checkedHonorList:res});
+    let title = [
+        {
+          "id":1,
+          "name":"群组1"
+        },{
+          "id":3,
+          "name":"群组3"
+        },{
+          "id":3,
+          "name":"群组3"
+        }  
+    ]
+
+    this.setState({title:title,swiperArray:swiperArray});
   }
 
-
-  //更新swiper样式
-  // updateSwiperWidth = (checkedHonorList) => {
-  //   let dom =  document.getElementById("app").getElementsByClassName('swiper-wrapper');
-  //   if(!this.props.defaultFlag) {
-  //     let fullWidth = document.getElementsByClassName("rc-tabs-bar")[0].offsetWidth;
-  //     let splitNum = this.props.defaultFlag? 8 : 16;
-  //     let row = Math.ceil(checkedHonorList.length/splitNum);
-  //     if(dom.length > 0) {
-  //       dom[0].style.width = 100 * Number(row) + "%";
-  //     }
-  //     this.setState({row:row});
-  //   }
-  // }
-  
   // 添加荣耀tag
   handleAddTag = () => {
     console.log("添加tag头部");
   }
 
   //选中某个item后的回调
-  onSelectedItem = (index1,index2) => {
-    console.log("选中第"+index1+"组第"+index2+"个");
+  onSelectItem = (activeIndex,column,index) => {
+    console.log("选中第"+activeIndex+"组第"+column+"列第"+(index+1)+"个");
   }
 
   //删除
-  handleDelete = (index1) => {
-    console.log(`在第${index1}组删除`);
-    this.state.checkedHonorList[index1].cultureHonourTags.splice(1,2);
-    debugger;
-    this.setState({checkedHonorList:this.state.checkedHonorList});
+  handleDelete = (index) => {
+    console.log(`在第${index}组删除`);
+    this.state.swiperArray[index].splice(1,1);
   }
 
   //添加
-  handlerAdd = (index1) => {
-    console.log(`在第${index1}组添加`);
+  handlerAdd = (index) => {
+    console.log(`在第${index}组添加`);
     let tempAddItem = {
         "id":1,
         "award":2,
@@ -210,16 +198,16 @@ export default class Demo1 extends Component{
         "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
         "name":"拼命三郎"
     };
-    this.state.checkedHonorList[index1].cultureHonourTags.push(tempAddItem);
-    this.setState({checkedHonorList:this.state.checkedHonorList});
+    this.state.swiperArray[index].push(tempAddItem);
 
   }
   
   render(){
-  	if(!this.state.checkedHonorList.length) return <span></span>
+  	if(!this.state.swiperArray.length) return <span></span>
     return (
     	<div id="app">
-        	<SwiperTab itemNum={8} swiperKey={"cultureHonourTags"} addHonor={this.handlerAdd} deleteHonor={this.handleDelete} tabList={this.state.checkedHonorList} onSelectedItem={this.onSelectedItem}></SwiperTab>
+        	<SwiperTab columnItemNum={8} title={["群组1","群组2","群组3"]} onSelectItem={this.onSelectItem} swiperArray={this.state.swiperArray} singleDom={this.state.singleDom} itemNum={8} swiperKey={"cultureHonourTags"} addItem={this.handlerAdd} deleteItem={this.handleDelete} tabList={this.state.checkedHonorList} onSelectedItem={this.onSelectedItem}>
+            </SwiperTab>
       	</div>
       );
   }

@@ -14,180 +14,36 @@ const propType = {
   onSelectedItem: PropTypes.func.isRequired,
   swiperKey: PropTypes.string.isRequired,
   multiCheck: PropTypes.bool,  //item是支持单选还是多选 false:单选  true:多选
+  title: PropTypes.array.isRequired,
+  singleDom: PropTypes.node.isRequired,
+  selectedItem: PropTypes.func,
+  columnItemNum: PropTypes.number,
 }
 
 class SwiperTab extends Component{
 	constructor(props, context) {
     super(props, context);
     this.state = {
-      titleArray:[],
+      title:this.props.title,
       titleActivity: 0,
       activeIndex: 0,
-      swiperArray: []
+      swiperArray: this.props.swiperArray || []
     }
     
   }
+  componentDidUpdate() {
+    console.log("didUpdate");
+    this.swiperNested[this.state.activeIndex].update();
+  }
   componentDidMount() {
-    let swiperArray = [
-        [
-          {
-              "id":1,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-              "name":"拼命三郎"
-          },
-          {
-              "id":2,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-              "name":"行家里手"
-          },
-          {
-              "id":3,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/3.png",
-              "name":"勇于担当"
-          },{
-              "id":1,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-              "name":"拼命三郎"
-          },
-          {
-              "id":2,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-              "name":"行家里手"
-          },
-          {
-              "id":3,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/3.png",
-              "name":"勇于担当"
-          },{
-              "id":1,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-              "name":"拼命三郎"
-          },
-          {
-              "id":2,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-              "name":"行家里手"
-          },
-          {
-              "id":3,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/3.png",
-              "name":"勇于担当"
-          },{
-              "id":1,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-              "name":"拼命三郎"
-          },
-          {
-              "id":2,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-              "name":"行家里手"
-          },
-          {
-              "id":3,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/3.png",
-              "name":"勇于担当"
-          },{
-              "id":1,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-              "name":"拼命三郎"
-          },
-          {
-              "id":2,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-              "name":"行家里手"
-          },
-          {
-              "id":3,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/3.png",
-              "name":"勇于担当"
-          }
-        ],
-        [
-          {
-              "id":1,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-              "name":"拼命三郎"
-          },
-          {
-              "id":2,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-              "name":"行家里手"
-          }
-        ],
-        [
-          {
-              "id":1,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-              "name":"拼命三郎"
-          },
-          {
-              "id":2,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-              "name":"行家里手"
-          }
-        ]
-      
-      ]
-    let titleArray = [
-        {
-          "id":1,
-          "name":"群组1"
-        },{
-          "id":3,
-          "name":"群组3"
-        },{
-          "id":3,
-          "name":"群组3"
-        }  
-    ]
-
-    this.setState({titleArray:titleArray,swiperArray:swiperArray});
+    
     let self = this;
     window.onload = function(){
-      var swiperNested1 = new Swiper('.swiper-nested',{
+      self.swiperNested = new Swiper('.swiper-nested',{
         pagination: '.pagination-nested',
         paginationClickable: true,
       })
-
-      var tabsSwiper = new Swiper('.swiper-outerside',{
+      self.tabsSwiper = new Swiper('.swiper-outerside',{
         onSlideChangeStart: function(swiper){
           self.setState({activeIndex:swiper.activeIndex})
         }
@@ -195,16 +51,40 @@ class SwiperTab extends Component{
     }
   }
 
+  HandleSelectItem = (column,index) => {
+    let self =this;
+    return function() {
+      const { onSelectItem,multiCheck } = self.props;
+      if(multiCheck) {
+
+      }
+      if(onSelectItem) {
+        onSelectItem(self.state.activeIndex,column,index);
+      }
+    }
+  }
+
  renderTabTitle = () => {
-   let titleArray = this.state.titleArray;
+   let titleArray = this.props.title;
    let titleDomArray = [];
    let self = this;
-   debugger;
    titleArray.map(function(item,index) {
-    titleDomArray.push(<a href="#" data-id={item.id} data-active={self.state.activeIndex==index} className="tab-title">{item.name}</a>)
+    titleDomArray.push(<TabPane tab={item} key={index}></TabPane>)
    })
-   return <div className="tab-wrapper">{titleDomArray}</div>;
+   return titleDomArray;
  }
+
+ addItem = () => {
+  const {addItem} = this.props;
+  addItem(this.state.activeIndex);
+}
+
+deleteItem = () => {
+  const {deleteItem} = this.props;
+  console.log("deleteItem");
+  deleteItem(this.state.activeIndex);
+}
+
 
  renderSwiper = () => {
    let swiperArray = this.state.swiperArray;
@@ -212,10 +92,10 @@ class SwiperTab extends Component{
    let swiperArrayDom = [];
    let swiperDom;
    swiperArray.map(function(item,index) {
-    swiperDom = <div className="swiper-slide">
+    swiperDom = <div key={index} className="swiper-slide">
                         <div className="swiper-container swiper-nested">
-                          <div className="pagination pagination-nested"></div>
                             {self.renderNestSwiper(item)}
+                            <div className="pagination pagination-nested"></div>
                         </div>
                     </div>;
     swiperArrayDom.push(swiperDom);
@@ -231,7 +111,7 @@ class SwiperTab extends Component{
   let dom ;
   let nestDom = [];
   nestArray.map(function(item,column) {
-    dom = <div className="swiper-slide">
+    dom = <div key={column} className="swiper-slide">
               {self.renderColumn(item,column,totalColum)}
           </div>
     nestDom.push(dom);
@@ -252,16 +132,15 @@ renderColumn = (data,column,totalColum) => {
   //index  本列第几个
   data.map( (item,index) => {
     columsArray.push(
-      <div onClick={self.onSelectHonour}
+      <div onClick={self.HandleSelectItem(column,index)}
         data-column={column}
+        key = {index}
         data-index={index}
         data-checked = {item.checked}
         key={index} >
-       
         <div className="honor-detail">
-          <img src={item.logo} alt="" />
-          <h4>{item.name}</h4>
-          <div className="icon-select"><i className="icon iconfont icon-selected"></i></div>
+          {item.logo && <img src={item.logo} alt="" />}
+          {item.name && <h4>{item.name}</h4>}
         </div>
       </div>
     )
@@ -269,20 +148,18 @@ renderColumn = (data,column,totalColum) => {
   
   let  operDom = (<div className="col-items">
                     <div className="honor-oper">
-                        <div className="add-honor" onClick={this.addHonor}>+</div>
-                        <div className="delete-honor" onTouchEnd={this.deleteHonor}>-</div>
+                        <div className="add-honor" onClick={this.addItem}>+</div>
+                        <div className="delete-honor" onClick={this.deleteItem}>-</div>
                     </div>
                   </div>)
   if(Number(column) == totalColum-1) {
       columsArray.push(operDom)
   }
-  console.log("columsArray");
-  console.log(<div className="columns">{columsArray}</div>);
   return <div className="columns">{columsArray}</div>;
 }
 
 splitData = (data=[]) => {
-  let splitNum = 8;
+  let splitNum = this.props.columnItemNum;
   let totalColum = Math.ceil(data.length/splitNum);
   let nestArray = [];
   let j = 0;
@@ -293,18 +170,31 @@ splitData = (data=[]) => {
   }
   return {"nestArray":nestArray,"totalColum":totalColum};
 }
-  
+
+toggleHonorTab = (id) => {
+  this.setState({activeIndex:id});
+  this.tabsSwiper.slideTo(id);
+}
+
  render() {
-    
-     
     return (
       <div>
         <div className="tabs-container"> 
+        <Tabs
+        defaultActiveKey = "0"
+        activeKey = {this.state.activeIndex.toString()}
+        onChange={this.toggleHonorTab}
+        destroyInactiveTabPane
+        renderTabBar={()=><ScrollableInkTabBar />}
+        renderTabContent={()=><TabContent />}
+      >
+          
           {this.renderTabTitle()}
+        </Tabs>
+         
         </div>
         <div className="swiper-container swiper-outerside">
           {this.renderSwiper()}
-          
         </div>
       </div>
     )
@@ -313,6 +203,7 @@ splitData = (data=[]) => {
 
 SwiperTab.defaultProps = {
   multiCheck: false,
+  columnItemNum: 4
 }
 
 SwiperTab.propType = propType
