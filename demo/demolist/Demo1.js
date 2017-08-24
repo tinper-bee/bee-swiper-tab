@@ -156,20 +156,9 @@ class Demo1 extends Component{
         ]
       
       ]
-    let title = [
-        {
-          "id":1,
-          "name":"群组1"
-        },{
-          "id":3,
-          "name":"群组3"
-        },{
-          "id":3,
-          "name":"群组3"
-        }  
-    ]
 
-    this.setState({title:title,swiperArray:swiperArray});
+
+    this.setState({swiperArray:swiperArray});
   }
 
   // 添加荣耀tag
@@ -206,20 +195,25 @@ class Demo1 extends Component{
       console.log(activeIndex);
   }
   
+  renderItem = (item) => {
+    return {img:item.logo,label:item.name};
+  }
+
   render(){
   	if(!this.state.swiperArray.length) return <span></span>
     return (
     	<div id="app">
         	<SwiperTab 
             showOper={true} 
-            activeIndex={2}
+            activeIndex={0}
             onChangeTab={this.handleChangeTab}
             columnItemNum={8} 
             title={["群组1","群组2","群组3"]} 
             onSelectItem={this.onSelectItem} 
             swiperArray={this.state.swiperArray} 
             addItem={this.handlerAdd} 
-            deleteItem={this.handleDelete}  />
+            deleteItem={this.handleDelete}
+            render={item => this.renderItem(item) }  />
       	</div>
       );
   }

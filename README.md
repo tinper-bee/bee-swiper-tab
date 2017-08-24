@@ -39,79 +39,6 @@ import "./node_modules/bee-swiper-tab/build/SwiperTab.css"
 ```
 
 
-```
-swiperArray
-
-let swiperArray = [
-        [
-          {
-              "id":1,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-              "name":"拼命三郎"
-          },
-          {
-              "id":2,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-              "name":"行家里手"
-          },
-          {
-              "id":3,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/3.png",
-              "name":"勇于担当"
-          }
-        ],
-        [
-          {
-              "id":1,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-              "name":"拼命三郎"
-          },
-          {
-              "id":2,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-              "name":"行家里手"
-          }
-        ],
-        [
-          {
-              "id":1,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-              "name":"拼命三郎"
-          },
-          {
-              "id":2,
-              "award":2,
-              "value":1,
-              "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-              "name":"行家里手"
-          }
-        ]
-      
-      ]
-
-title数据有几组，swiperArray就该有几组
-每个item数据最多显示img和文字，分别对应logo和name字段。如果不想显示某个不添加此字段即可。
-
-{
-    "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-    "name":"行家里手"
-}
-
-    
-```
-
 ## API
 
 
@@ -125,6 +52,7 @@ title数据有几组，swiperArray就该有几组
 |addItem|点击添加按钮的回调param1:当前tab页签的activeIndex|func|-|
 |deleteItem|点击删除按钮的回调param1:当前tab页签的activeIndex|func|-|
 |onChangeTab|切换tab页回调param:切换后的activeIndex|func|-|
+|render|自定义的展示出来的item,需要展示哪些字段最多两个(label,img）|Function(record)|-|
 
 
 

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Tabs, { TabPane } from 'rc-tabs';
 import TabContent from 'rc-tabs/lib/TabContent';
 import ScrollableInkTabBar from 'rc-tabs/lib/ScrollableInkTabBar';
+import Item from './item';
 import './Swiper.js';
 
 const propType = {
@@ -17,7 +18,8 @@ const propType = {
   selectedItem: PropTypes.func,
   columnItemNum: PropTypes.number,
   showOper: PropTypes.bool,
-  onChangeTab: PropTypes.func
+  onChangeTab: PropTypes.func,
+  render: PropTypes.render
 }
 
 class SwiperTab extends Component{
@@ -130,18 +132,14 @@ renderColumn = (data,column,totalColum) => {
   //index  本列第几个
   data.map( (item,index) => {
     columsArray.push(
-      <div onClick={self.HandleSelectItem(column,index)}
-        data-column={column}
-        key = {index}
-        data-index={index}
-        data-checked = {item.checked}
-        key={index} >
-        <div className="honor-detail">
-          {item.logo && <img src={item.logo} alt="" />}
-          {item.name && <h4>{item.name}</h4>}
-        </div>
-      </div>
-    )
+      <Item 
+        index={index} 
+        item={item}
+        column={column} 
+        HandleSelectItem={self.HandleSelectItem}
+        checked={item.checked}
+        render={self.props.render} 
+      />)
   })
   if(this.props.showOper) {
     let  operDom = (<div className="col-items">
@@ -209,50 +207,8 @@ SwiperTab.defaultProps = {
   multiCheck: false,
   columnItemNum: 4,
   showOper: false,
-  title: ["群组1","群组2","群组3"],
-  swiperArray: [
-    [
-      {
-          "id":3,
-          "award":2,
-          "value":1,
-          "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/3.png",
-          "name":"勇于担当"
-      }
-    ],
-    [
-      {
-          "id":1,
-          "award":2,
-          "value":1,
-          "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-          "name":"拼命三郎"
-      },
-      {
-          "id":2,
-          "award":2,
-          "value":1,
-          "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-          "name":"行家里手"
-      }
-    ],
-    [
-      {
-          "id":1,
-          "award":2,
-          "value":1,
-          "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/1.png",
-          "name":"拼命三郎"
-      },
-      {
-          "id":2,
-          "award":2,
-          "value":1,
-          "logo":"http://hongbao-test.app.yyuap.com/static/img/honor-icon/2.png",
-          "name":"行家里手"
-      }
-    ]
-  ]
+  title: [],
+  swiperArray: []
 }
 
 SwiperTab.propType = propType
